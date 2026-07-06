@@ -1,3 +1,4 @@
+#This project utilizes the following Superstore data:
 CREATE TABLE superstore (
     item_id INTEGER PRIMARY KEY,
     item_name TEXT,
@@ -28,25 +29,33 @@ VALUES
     
 -- © Copyright 2025 Break Into Tech  --
 
+#For this project, I used SQL to query the Superstore database to get information about items sold at the store and their prices. 
+
+#Use a SELECT statement with limit to understand the table.
 SELECT *
 FROM superstore
 LIMIT 5
 ;
 
+#Use a SELECT statement to order the items by price.
 SELECT item_name, price
 FROM superstore
 ORDER BY price
 ;
 
+#Show a the average price of items in this store to get a feel for overall price point.
 SELECT AVG(price) as average_price
 FROM superstore
 ;
 
+
+#Show a statistic about the price for items in the category of "Kitchen Supplies". In this case we see "Kitchen Supplies" as a whole are well below average for the store. 
 SELECT item_name, MAX(PRICE)
 FROM superstore
 WHERE category = "Kitchen Supplies"
 ;
 
+#Show ratings of items priced above the average price to see if there is any notice correlation between the higher ticket items and their rating.
 SELECT item_name, price, average_rating
 FROM superstore
 WHERE price > (SELECT AVG(price) FROM superstore)
